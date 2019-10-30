@@ -1,14 +1,18 @@
 package com.hbt.semillero.servicios;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.hbt.semillero.servicios.EstadoEnum;
+import com.hbt.semillero.entidades.Comic;
+import com.hbt.semillero.entidades.EstadoEnum;
 
 /**
  * Test unitario del semillero HBT
  * 
- * @author laura Elizabeth Castellanos Ducon
+ * @author ccastano
  *
  */
 public class AppTest {
@@ -41,11 +45,29 @@ public class AppTest {
 		}
 		return cadenaInvertida;
 	}
-
+	
+	/**
+	 * 
+	 * Metodo encargado de validar que se invierte la cadena correctamente
+	 * Se pone en mayusculas las cadenas
+	 * Se quitan espacio al inicio y al fin de la cadena
+	 * Se reemplazan espacios para que la validacion se pueda comprobar 
+	 * <b>Caso de Uso</b>
+	 *
+	 */
+	@Test
+	public void invertirCadenaTest() {
+		String resultado = invertirCadena("Yo soy");
+		String actual =resultado.toUpperCase().trim();
+		String esperado = "Yo soy".toUpperCase().trim();
+		Assert.assertEquals(actual.replace(" ",""), esperado.replace(" ",""));
+	}
+	
 	/**
 	 * metodo para validar si la cadena invertida es la correcta
 	 * 
 	 * */
+	@Test
 	public void testInvert() {
 		String word ="laura";
 	
@@ -55,22 +77,72 @@ public class AppTest {
 		String resultadoEsperado4= "";
 		String resultadoEsperado5= "arual";
 		
-		if(invertirCadena(word).equals(resultadoEsperado)) {
-			Assert.assertEquals(invertirCadena(word), resultadoEsperado);
-		}
-		if(invertirCadena(word).equals(resultadoEsperado2)) {
-			Assert.assertEquals(invertirCadena(word), resultadoEsperado2);
-		}
-		if (invertirCadena(word).equals(resultadoEsperado3)) {
-			Assert.assertEquals(invertirCadena(word), resultadoEsperado3);
-		}
-		if (invertirCadena(word).equals(resultadoEsperado4)) {
-			Assert.assertEquals(invertirCadena(word), resultadoEsperado3);
-		}
-		if (invertirCadena(word).equals(resultadoEsperado5)) {
-			Assert.assertEquals(invertirCadena(word), resultadoEsperado3);
-		}
+		Assert.assertEquals(invertirCadena(word), resultadoEsperado);
+		Assert.assertEquals(invertirCadena(word), resultadoEsperado2);
+		Assert.assertEquals(invertirCadena(word), resultadoEsperado3);
+		Assert.assertEquals(invertirCadena(word), resultadoEsperado3);
+		Assert.assertEquals(invertirCadena(word), resultadoEsperado3);		
+	}
+
+	
+    /**
+     *  método que use el método ToString de la entidad comic
+     */
+	@Test
+	public void testToString() {
+		Comic comic = new Comic();
+		comic.setNumeroPaginas(23);
+		String numeroUnoPrueba = "23";
+		String numeroDosPrueba = " 23";
+		String numeroTresPrueba = "23 ";
+		Assert.assertEquals(comic.getNumeroPaginas().toString(), numeroUnoPrueba);
+		Assert.assertEquals(comic.getNumeroPaginas().toString(), numeroDosPrueba);
+		Assert.assertEquals(comic.getNumeroPaginas().toString(), numeroTresPrueba);		
 	}
 	
-
+	/**
+	 * Este metodo se encargara de probar el enumerado de EstadoEnum
+	 * */
+	@Test
+	public void testEstadoEnum() {
+		
+        EstadoEnum estado1 = EstadoEnum.ACTIVO;
+        EstadoEnum estado2 = EstadoEnum.INACTIVO;  
+        
+		String variableActiva = "ACTIVO";
+		Assert.assertEquals(estado1.name(),variableActiva);
+		
+		String variableInactiva = "INACTIVO";
+		Assert.assertEquals(estado2,variableInactiva);
+	}
+	
+	/**
+	 * Devolver un entero con la posición del enum según está declarada
+	 * */
+	@Test
+	public int posisionEnum(int position) {
+		EstadoEnum estado1 = EstadoEnum.ACTIVO;
+        EstadoEnum estado2 = EstadoEnum.INACTIVO;  
+		position =1;
+		ArrayList<String> listaEnum = new ArrayList<String>();   
+		listaEnum.add(""+estado1);
+	    listaEnum.add(""+estado2);
+	    
+	    Assert.assertEquals(listaEnum.get(1),position);
+	    return position;
+	}
+		/*
+		 * devolver un array con todos los enum
+		 * */
+	public void returnValues() {
+		EstadoEnum estado1 = EstadoEnum.ACTIVO;
+        EstadoEnum estado2 = EstadoEnum.INACTIVO;  
+        ArrayList<String> listaEnum = new ArrayList<String>();   
+		listaEnum.add(""+estado1);
+	    listaEnum.add(""+estado2);
+	    for (int i = 0; i < listaEnum.size(); i++) {
+			System.out.println(listaEnum.get(i));
+		}
+	}
+		
 }
