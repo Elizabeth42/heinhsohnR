@@ -10,5 +10,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './bienvenida-component.html',
 })
 export class BienvenidaComponent {
-
+ 
 }
