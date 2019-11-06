@@ -1,0 +1,8 @@
+table{
+    height:90PX;
+    width:90PX;
+    text-align:center;
+    border:1px solid silver;
+    display: table-cell;
+    vertical-align:middle;
+}

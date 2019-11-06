@@ -36,6 +36,14 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['gestionar-comic']);
   }
 
+   /**
+   * @description Metodo encargado de direccionar al componente de PresentacionAutor
+   * @author Laura Elizabeth Castellanos Ducon <Eliizabeth.42@gmail.com>
+   */
+  public navegarPresentacionAutor(): void {
+    this.router.navigate(['presentacion-component']);
+  }
+
   /**
    * @description Metodo encargado de direccionar al componente de gestionar comic
    * @author Diego Fernando Alvarez Silva <dalvarez@heinsohn.com.co>
