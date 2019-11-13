@@ -155,8 +155,13 @@ public class AppTest {
 	 * se evaluara
 	 */
 	@Test
-	public void agregarComicDTOLista() {
-
+	public void validateString() {
+		String s1 = "street";
+		String s2;
+		s2= new String("street");
+		if(s1==s2) {
+			Assert.assertEquals(s1, s2);
+		}
 	}
 
 }
