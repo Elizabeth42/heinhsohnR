@@ -88,9 +88,9 @@ export class CrearPersonaComponent implements OnInit{
         }
 
         console.log(1 == 1);
-  //      console.log("1" == 1);
+//        console.log("1" == 1);
         console.log(1 === 1);
-//        console.log("1" === 1);
+  //      console.log("1" === 1);
 
         this.comicDTO = new ComicDTO();
         this.comicDTO.autores = "Pablito";
