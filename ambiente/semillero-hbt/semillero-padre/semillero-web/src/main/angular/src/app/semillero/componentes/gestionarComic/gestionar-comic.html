@@ -108,16 +108,15 @@
                             <td>{{comic.precio | number: '.2'}}</td>
                             <td>{{comic.color ? 'Si' : 'No' }}</td>
                             <td>
-                                <i class="fas fa-search 2x ml-1" [routerLink]="['/consultar-comic',comic]" title="Consultar"></i>
-                                <i class="fas fa-pencil-alt 2x ml-1"  (click)="editarComic(i+1)" title="Editar"></i>
-                                <i class="far fa-times-circle 2x ml-1" (click)="deletePosition(i+1)" title="Eliminar"></i>
+                                <i class="fas fa-search 2x ml-1" (click)="consultarComic(i)" title="Consultar"></i>
+                                <i class="fas fa-pencil-alt 2x ml-1"  [routerLink]="['/bienvenida',comic]" title="Editar"></i>
+                                <i class="far fa-times-circle 2x ml-1" (click)="editarComic(comic)" title="Eliminar"></i>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="alert alert-danger" *ngIf=flag>Se elimino el cómic : {{deleteName}} </div>
-                <div class="alert alert-success" *ngIf=flagC>Se creo el cómic : {{createName}} </div>
             </div>
         </div>
     </form>
+
 </div>

@@ -1,26 +1,41 @@
-package com.hbt.semillero.dto;
+/**
+ * Comic.java
+ */
+package com.hbt.semillero.entidad;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.hbt.semillero.entidad.EstadoEnum;
-import com.hbt.semillero.entidad.TematicaEnum;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * <b>Descripción:<b> Clase que determina el dto a usar para modificar,
- * consultar y posteriormente eliminar un comic
+ * <b>Descripción:<b> Clase que determina la entidad que permite representar la
+ * tabla "DB_SEMILLERO"."COMIC"
  * 
  * @author ccastano
+ * @version
  */
-public class ComicDTO implements Serializable {
+@Entity
+@Table(name = "COMIC")
+public class Comic implements Serializable {
 
 	/**
-	 * Atributo que determina
+	 * Serializar es pasar un Objeto a un array de bytes y viceversa. Atributo que
+	 * determina serialVersionUID es el id único que identifica una clase cuando lo
+	 * serializamos. ;ediante este id podemos identificar el objeto convertido en un
+	 * array de bytes.
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private String id;
+	private Long id;
 	private String nombre;
 	private String editorial;
 	private TematicaEnum tematicaEnum;
@@ -34,11 +49,22 @@ public class ComicDTO implements Serializable {
 	private Long cantidad;
 
 	/**
+	 * Constructor de la clase.
+	 */
+	public Comic() {
+
+	}
+
+	/**
 	 * Metodo encargado de retornar el valor del atributo id
 	 * 
 	 * @return El id asociado a la clase
 	 */
-	public String getId() {
+	@Id
+	@SequenceGenerator(allocationSize = 1, name = "COMIC_SCID_GENERATOR", sequenceName = "SEQ_COMIC")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMIC_SCID_GENERATOR")
+	@Column(name = "SCID")
+	public Long getId() {
 		return id;
 	}
 
@@ -47,7 +73,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @param id El nuevo id a modificar.
 	 */
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,6 +82,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El nombre asociado a la clase
 	 */
+	@Column(name = "SCNOMBRE")
 	public String getNombre() {
 		return nombre;
 	}
@@ -74,6 +101,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El editorial asociado a la clase
 	 */
+	@Column(name = "SCEDITORIAL")
 	public String getEditorial() {
 		return editorial;
 	}
@@ -88,18 +116,20 @@ public class ComicDTO implements Serializable {
 	}
 
 	/**
-	 * Metodo encargado de retornar el valor del atributo tematicaEnum
+	 * Metodo encargado de retornar el valor del atributo tematica
 	 * 
-	 * @return El tematicaEnum asociado a la clase
+	 * @return El tematica asociado a la clase
 	 */
+	@Column(name = "SCTEMATICA")
+	@Enumerated(value = EnumType.STRING)
 	public TematicaEnum getTematicaEnum() {
 		return tematicaEnum;
 	}
 
 	/**
-	 * Metodo encargado de modificar el valor del atributo tematicaEnum
+	 * Metodo encargado de modificar el valor del atributo tematica
 	 * 
-	 * @param tematicaEnum El nuevo tematicaEnum a modificar.
+	 * @param tematica El nuevo tematica a modificar.
 	 */
 	public void setTematicaEnum(TematicaEnum tematicaEnum) {
 		this.tematicaEnum = tematicaEnum;
@@ -110,6 +140,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El coleccion asociado a la clase
 	 */
+	@Column(name = "SCCOLECCION")
 	public String getColeccion() {
 		return coleccion;
 	}
@@ -128,6 +159,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El numeroPaginas asociado a la clase
 	 */
+	@Column(name = "SCNUMEROPAGINAS")
 	public Integer getNumeroPaginas() {
 		return numeroPaginas;
 	}
@@ -146,6 +178,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El precio asociado a la clase
 	 */
+	@Column(name = "SCPRECIO")
 	public BigDecimal getPrecio() {
 		return precio;
 	}
@@ -164,6 +197,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El autores asociado a la clase
 	 */
+	@Column(name = "SCAUTORES")
 	public String getAutores() {
 		return autores;
 	}
@@ -182,6 +216,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El color asociado a la clase
 	 */
+	@Column(name = "SCCOLOR")
 	public Boolean getColor() {
 		return color;
 	}
@@ -200,6 +235,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El fechaVenta asociado a la clase
 	 */
+	@Column(name = "SCFECHA_VENTA")
 	public LocalDate getFechaVenta() {
 		return fechaVenta;
 	}
@@ -214,18 +250,20 @@ public class ComicDTO implements Serializable {
 	}
 
 	/**
-	 * Metodo encargado de retornar el valor del atributo estadoEnum
+	 * Metodo encargado de retornar el valor del atributo estado
 	 * 
-	 * @return El estadoEnum asociado a la clase
+	 * @return El estado asociado a la clase
 	 */
+	@Column(name = "SCESTADO")
+	@Enumerated(value = EnumType.STRING)
 	public EstadoEnum getEstadoEnum() {
 		return estadoEnum;
 	}
 
 	/**
-	 * Metodo encargado de modificar el valor del atributo estadoEnum
+	 * Metodo encargado de modificar el valor del atributo estado
 	 * 
-	 * @param estadoEnum El nuevo estadoEnum a modificar.
+	 * @param estado El nuevo estado a modificar.
 	 */
 	public void setEstadoEnum(EstadoEnum estadoEnum) {
 		this.estadoEnum = estadoEnum;
@@ -236,6 +274,7 @@ public class ComicDTO implements Serializable {
 	 * 
 	 * @return El cantidad asociado a la clase
 	 */
+	@Column(name = "SCCANTIDAD")
 	public Long getCantidad() {
 		return cantidad;
 	}
@@ -250,43 +289,46 @@ public class ComicDTO implements Serializable {
 	}
 
 	/**
-	 * Método encargado de convertir los datos recibidos en JSON al tipo ComicDTO.
-	 * <b>Caso de Uso:</b>
-	 * 
-	 * @param arg Cadena que representa el objeto complejo JSON.
-	 * @return Instancia con los datos recibidos.
-	 */
-	public static ComicDTO valueOf(String arg) {
-		return JsonUtils.valueOf(arg, ComicDTO.class);
-	}
-
-	/**
-	 * Método encargado de convertir los datos recibidos en ComicDTO al JSON
-	 * esperado
-	 * 
-	 * @param dto DTO
-	 * 
-	 * @return Json
+	 * @see java.lang.Object#toString() Metodo que permite asociar al objeto un
+	 *      texto representativo
 	 */
 	@Override
 	public String toString() {
-		return JsonUtils.toStringJson(this);
+		return "Comic [id=" + id + ", nombre=" + nombre + ", editorial=" + editorial + ", tematica=" + tematicaEnum
+				+ ", coleccion=" + coleccion + ", numeroPaginas=" + numeroPaginas + ", precio=" + precio + ", autores="
+				+ autores + ", color=" + color + ", fechaVenta=" + fechaVenta + ", estado=" + estadoEnum + ", cantidad="
+				+ cantidad + "]";
 	}
 
 	/**
-	 * @see java.lang.Object#hashCode()
+	 * @see java.lang.Object#hashCode() Este método viene a complementar al método
+	 *      equals y sirve para comparar objetos de una forma más rápida en
+	 *      estructuras Hash ya que únicamente nos devuelve un número entero. Cuando
+	 *      Java compara dos objetos en estructuras de tipo hash (HashMap, HashSet
+	 *      etc) primero invoca al método hashcode y luego el equals
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((autores == null) ? 0 : autores.hashCode());
+		result = prime * result + ((cantidad == null) ? 0 : cantidad.hashCode());
+		result = prime * result + ((coleccion == null) ? 0 : coleccion.hashCode());
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + ((editorial == null) ? 0 : editorial.hashCode());
+		result = prime * result + ((estadoEnum == null) ? 0 : estadoEnum.hashCode());
+		result = prime * result + ((fechaVenta == null) ? 0 : fechaVenta.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((numeroPaginas == null) ? 0 : numeroPaginas.hashCode());
+		result = prime * result + ((precio == null) ? 0 : precio.hashCode());
+		result = prime * result + ((tematicaEnum == null) ? 0 : tematicaEnum.hashCode());
 		return result;
 	}
 
 	/**
-	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @see java.lang.Object#equals(java.lang.Object) Metodo que permite comparar
+	 *      objetos
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -296,7 +338,42 @@ public class ComicDTO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ComicDTO other = (ComicDTO) obj;
+		Comic other = (Comic) obj;
+		if (autores == null) {
+			if (other.autores != null)
+				return false;
+		} else if (!autores.equals(other.autores))
+			return false;
+		if (cantidad == null) {
+			if (other.cantidad != null)
+				return false;
+		} else if (!cantidad.equals(other.cantidad))
+			return false;
+		if (coleccion == null) {
+			if (other.coleccion != null)
+				return false;
+		} else if (!coleccion.equals(other.coleccion))
+			return false;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if (!color.equals(other.color))
+			return false;
+		if (editorial == null) {
+			if (other.editorial != null)
+				return false;
+		} else if (!editorial.equals(other.editorial))
+			return false;
+		if (estadoEnum == null) {
+			if (other.estadoEnum != null)
+				return false;
+		} else if (!estadoEnum.equals(other.estadoEnum))
+			return false;
+		if (fechaVenta == null) {
+			if (other.fechaVenta != null)
+				return false;
+		} else if (!fechaVenta.equals(other.fechaVenta))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -307,6 +384,22 @@ public class ComicDTO implements Serializable {
 				return false;
 		} else if (!nombre.equals(other.nombre))
 			return false;
+		if (numeroPaginas == null) {
+			if (other.numeroPaginas != null)
+				return false;
+		} else if (!numeroPaginas.equals(other.numeroPaginas))
+			return false;
+		if (precio == null) {
+			if (other.precio != null)
+				return false;
+		} else if (!precio.equals(other.precio))
+			return false;
+		if (tematicaEnum == null) {
+			if (other.tematicaEnum != null)
+				return false;
+		} else if (!tematicaEnum.equals(other.tematicaEnum))
+			return false;
 		return true;
 	}
+
 }
