@@ -1,6 +1,5 @@
 package com.hbt.semillero.servicios;
-
-
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.hbt.semillero.pojo.EjerciciosPOJO;
 /**
@@ -8,22 +7,25 @@ import com.hbt.semillero.pojo.EjerciciosPOJO;
  * @author Laura Elizabeth Castellanos Ducon 
  * */
 public class EjerciciosTest {
-	private String brand;
-	private boolean empty;
+	private EjerciciosPOJO ep;
+	
+	public EjerciciosTest() {
+		this.ep = new EjerciciosPOJO();
+	}
 	
 	/**
-	 *Este ejercicio lanza un error pues el objeto WaterBottle 
-	 *no exite como tal
-	 **/
-	@Test
-	public static void ejercicio2() {
-		WaterBottle wb = new WaterBottle();
-		System.out.println("Empty =" + wb.empty);
-		System.out.println(",Brand ="+ wb.brand);
+	 * Permitira probar si los numeros son o no primos
+	 * */
+	@Test(enabled = false)
+	public void ejercicioPrimo() {
+		int  opcion1 = 12;
+		int  opcion2 = 21;
+		int  opcion3 = 3;
 		
+		Assert.assertEquals(ep.isPrime(opcion1), false);
+		Assert.assertEquals(ep.isPrime(opcion2), false);
+		Assert.assertEquals(ep.isPrime(opcion3), true);
 	}
-	public static void main(String[] args) {
-			EjerciciosTest t = new EjerciciosTest();
-			t.ejercicio2();
-	}
+	
+	
 }
