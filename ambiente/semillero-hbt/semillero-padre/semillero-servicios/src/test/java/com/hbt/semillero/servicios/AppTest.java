@@ -139,6 +139,7 @@ public class AppTest {
 	/*
 	 * devolver un array con todos los enum
 	 */
+	@Test(enabled = false)
 	public void returnValues() {
 		EstadoEnum estado1 = EstadoEnum.ACTIVO;
 		EstadoEnum estado2 = EstadoEnum.INACTIVO;
@@ -155,7 +156,7 @@ public class AppTest {
 	/**
 	 * se evaluara
 	 */
-	@Test
+	@Test(enabled = false)
 	public void validateString() {
 		String s1 = "street";
 		String s2;

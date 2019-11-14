@@ -2,6 +2,7 @@ package com.hbt.semillero.servicios;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.hbt.semillero.pojo.EjerciciosPOJO;
+import java.time.LocalDate;
 /**
  * Esta clase es para realizar la maraton de programacion
  * @author Laura Elizabeth Castellanos Ducon 
@@ -27,5 +28,13 @@ public class EjerciciosTest {
 		Assert.assertEquals(ep.isPrime(opcion3), true);
 	}
 	
+	/**
+	 * Permitira probar si 
+	 * */
+	@Test (enabled = false)
+	public void ejercicio4() {
+		LocalDate miFechaNacimiento = LocalDate.of(1997, 12, 20);
+//		Assert.assertEquals(ep.ejercicio4(date 2019-11-13), false);
+	}
 	
 }
