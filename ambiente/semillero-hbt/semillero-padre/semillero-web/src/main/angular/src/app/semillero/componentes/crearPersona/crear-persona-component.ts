@@ -57,21 +57,21 @@ export class CrearPersonaComponent implements OnInit{
         miMapa.get("1");
         let mifecha = new Date();
         
-        console.log(mifecha);
+    //    console.log(mifecha);
 
         let lista = this.listaApellidos;
         for (let i = 0; i < lista.length; i++) {
             const element = lista[i];
-            console.log(element);
+     //       console.log(element);
             
         }
 
         lista.forEach(element => {
-            console.log(element);
+     //       console.log(element);
         });
 
         lista.map(objeto => {
-            console.log(objeto);
+     //       console.log(objeto);
         });
 
         
@@ -82,20 +82,20 @@ export class CrearPersonaComponent implements OnInit{
         let retorno : any;
         let objeto = undefined;
         if(objeto !== null && objeto !== undefined ){
-            console.log("No es nulo");
+ //           console.log("No es nulo");
         } else {
-            console.log("Si es nulo");
+ //           console.log("Si es nulo");
         }
 
-        console.log(1 == 1);
+//        console.log(1 == 1);
 //        console.log("1" == 1);
-        console.log(1 === 1);
+ //       console.log(1 === 1);
   //      console.log("1" === 1);
 
-        this.comicDTO = new ComicDTO();
-        this.comicDTO.autores = "Pablito";
-        this.comicDTO.fechaVenta = new Date();
-        console.log(this.comicDTO.autores);
+ //       this.comicDTO = new ComicDTO();
+ //       this.comicDTO.autores = "Pablito";
+ //       this.comicDTO.fechaVenta = new Date();
+  //      console.log(this.comicDTO.autores);
         
         
         return retorno;

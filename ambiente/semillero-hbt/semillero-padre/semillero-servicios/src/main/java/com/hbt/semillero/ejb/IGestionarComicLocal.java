@@ -40,6 +40,16 @@ public interface IGestionarComicLocal {
 
 	/**
 	 * 
+	 * Metodo encargado de modificar el comic que entra
+	 * 
+	 * @author ccastano
+	 * 
+	 * @param comicModificar informacion nueva a modificar
+	 */
+	public void modificarComic(ComicDTO comicNuevo);
+
+	/**
+	 * 
 	 * Metodo encargado de eliminar un comic modificarlo y guardarlo
 	 * 
 	 * @author ccastano

@@ -50,17 +50,36 @@ public class GestionarComicBean implements IGestionarComicLocal {
 	 * 
 	 * @see com.hbt.semillero.ejb.IGestionarComicLocal#modificarComic(com.hbt.semillero.dto.ComicDTO)
 	 */
+//	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+//	public void modificarComic(Long id, String nombre, ComicDTO comicNuevo) {
+//		Comic comicModificar ;
+//		if(comicNuevo==null) {
+//			// Entidad a modificar
+//			comicModificar = em.find(Comic.class, id);
+//		}else {
+//			comicModificar = convertirComicDTOToComic(comicNuevo);
+//		}
+//		comicModificar.setNombre(nombre);
+//		em.merge(comicModificar);
+//	}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void modificarComic(Long id, String nombre, ComicDTO comicNuevo) {
+	public void modificarComic(ComicDTO comicNuevo) {
 		Comic comicModificar ;
-		if(comicNuevo==null) {
-			// Entidad a modificar
-			comicModificar = em.find(Comic.class, id);
-		}else {
-			comicModificar = convertirComicDTOToComic(comicNuevo);
+		if(comicNuevo!=null) {
+			comicModificar = em.find(Comic.class, Long.parseLong(comicNuevo.getId()));
+			comicModificar.setNombre(comicNuevo.getNombre());
+			comicModificar.setEditorial(comicNuevo.getEditorial());
+			comicModificar.setTematicaEnum(comicNuevo.getTematicaEnum());
+			comicModificar.setColeccion(comicNuevo.getColeccion());
+			comicModificar.setNumeroPaginas(comicNuevo.getNumeroPaginas());
+			comicModificar.setPrecio(comicNuevo.getPrecio());
+			comicModificar.setAutores(comicNuevo.getAutores());
+			comicModificar.setColor(comicNuevo.getColor());
+			comicModificar.setFechaVenta(comicNuevo.getFechaVenta());
+			comicModificar.setEstadoEnum(comicNuevo.getEstadoEnum());
+			comicModificar.setCantidad(comicNuevo.getCantidad());
+			em.merge(comicModificar);
 		}
-		comicModificar.setNombre(nombre);
-		em.merge(comicModificar);
 	}
 
 	/**
@@ -152,5 +171,11 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		comic.setEstadoEnum(comicDTO.getEstadoEnum());
 		comic.setCantidad(comicDTO.getCantidad());
 		return comic;
+	}
+
+	@Override
+	public void modificarComic(Long id, String nombre, ComicDTO comicNuevo) {
+		// TODO Auto-generated method stub
+		
 	}
 }

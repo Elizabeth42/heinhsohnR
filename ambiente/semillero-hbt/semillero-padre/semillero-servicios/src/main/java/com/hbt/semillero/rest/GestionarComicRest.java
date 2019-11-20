@@ -69,7 +69,7 @@ public class GestionarComicRest {
 	 * 
 	 * Metodo encargado de traer la informacion de un comic determiando
 	 * http://localhost:8085/semillero-servicios/rest/GestionarComic/consultarComic?idComic=1
-	 * 
+	 * http://localhost:8085/semillero-servicios/rest/GestionarComic/consultarComic/1 <- pathParam
 	 * @param idComic
 	 * @return
 	 */
@@ -103,7 +103,7 @@ public class GestionarComicRest {
 
 	/**
 	 * 
-	 * Metodo encargado de modificar el nombre de un comic
+	 * Metodo encargado de modificar un comic
 	 * http://localhost:8085/semillero-servicios/rest/GestionarComic/modificar?idComic=1&nombre=nuevonombre
 	 * @param idComic identificador del comic a buscar
 	 * @param nombre nombre nuevo del comic
@@ -111,8 +111,20 @@ public class GestionarComicRest {
 	@POST
 	@Path("/modificar")
 	@Produces(MediaType.APPLICATION_JSON)
-	public void modificarComic(@QueryParam("idComic") Long idComic, @QueryParam("nombre") String nombre) {
-		gestionarComicEJB.modificarComic(idComic, nombre, null);
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResultadoDTO modificarComic(ComicDTO comicDTO) {
+		ResultadoDTO resultadoMsg;	
+		try {		
+			if (comicDTO != null) {
+				gestionarComicEJB.modificarComic(comicDTO);
+				resultadoMsg = new ResultadoDTO(true, "Modificacion exitosa");
+			}else {
+				resultadoMsg = new ResultadoDTO(false, "No existe el objeto a modificar");				
+			}
+		} catch (Exception e) {
+			resultadoMsg = new ResultadoDTO(false, "Problemas al modificar: "+e.getMessage());
+		}
+		return resultadoMsg;
 	}
 
 	/**
@@ -124,10 +136,19 @@ public class GestionarComicRest {
 	@POST
 	@Path("/eliminar")
 	@Produces(MediaType.APPLICATION_JSON)
-	public void eliminarComic(@QueryParam("idComic") Long idComic) {
-		if (idComic != null) {
-			ComicDTO comicDTO = gestionarComicEJB.consultarComic(idComic.toString());
-
+	public ResultadoDTO eliminarComic(@QueryParam("idComic") String idComic) {
+		ResultadoDTO resultadoMsg;
+		try {		
+			if (idComic != null) {
+			//	ComicDTO comicDTO = gestionarComicEJB.consultarComic(idComic.toString());
+				gestionarComicEJB.eliminarComic(Long.parseLong(idComic));
+				resultadoMsg = new ResultadoDTO(true, "Eliminado Exitosamente");
+			}else {
+				resultadoMsg = new ResultadoDTO(false, "No existe el objeto a eliminar");				
+			}
+		} catch (Exception e) {
+			resultadoMsg = new ResultadoDTO(false, "Problemas al eliminar: "+e.getMessage());
 		}
+		return resultadoMsg;
 	}
 }
