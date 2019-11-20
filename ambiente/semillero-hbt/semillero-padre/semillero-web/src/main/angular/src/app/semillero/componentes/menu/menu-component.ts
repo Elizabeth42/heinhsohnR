@@ -43,8 +43,11 @@ export class MenuComponent implements OnInit {
   public navegarHome(): void {
     this.router.navigate(['bienvenida']);
   }
-
-  public navegarGestionarCompra(): void {
-    //WIP
+  /**
+   * @description metodo encargado de direccionar al componente de gestionar persona
+   * @author Laura Elizabeth Castellanos Ducon
+   */
+  public navegarGestionarPersona(): void {
+    this.router.navigate(['gestionar-persona']);
   }
 }

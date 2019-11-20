@@ -1,0 +1,39 @@
+<div class="container">
+    <form [formGroup]="gestionarProveedorForm">
+        <h1>Gestionar Proveedor</h1>
+        <hr>
+
+        <div class="row" [hidden]="listaProveedores.length === 0">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Fecha de creacion</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Persona</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--date:"MM/dd/yy"
+                        | uppercase-->
+                        <tr *ngFor="let proveedor of listaProveedores;let i=index;">
+                            <th scope="row">{{persona.id}}</th>
+                            <td>{{proveedor.direccion | uppercase }}</td>
+                            <td>{{proveedor.dateNew}}</td>
+                            <td>{{proveedor.estado}}</td>
+                            <td>{{proveedor.persona}}</td>
+                            <td>
+                                <i class="fas fa-pencil-alt 2x ml-1"  (click)="editarPersona(i+1)" title="Editar"></i>
+                                <i class="far fa-times-circle 2x ml-1" (click)="delete(comic.id)" title="Eliminar"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-danger" *ngIf=flag>{{msgError}} </div>
+                <div class="alert alert-success" *ngIf=flagC>{{msgError}} </div>
+            </div>
+        </div>
+    </form>
+</div>

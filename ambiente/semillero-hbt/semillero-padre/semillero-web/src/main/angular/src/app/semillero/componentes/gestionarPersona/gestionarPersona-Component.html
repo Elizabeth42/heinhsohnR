@@ -1,0 +1,64 @@
+<div class="container">
+    <form [formGroup]="gestionarPersonaForm">
+        <h1>Gestionar Persona</h1>
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <label for="nombrePersona">Nombre Completo:</label>
+                <input type="text" class="form-control" id="nombrePersona" formControlName="nombre"
+                    [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" maxlength="50">
+                <div *ngIf="submitted && f.nombre.errors">
+                    <span class="text-danger" *ngIf="f.nombre.errors.required">Campo requerido.</span>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <label for="numeroIdentificacion">Numero Identificacion:</label>
+                <input type="number" class="form-control" id="numeroIdentificacion" formControlName="numIdentificacion"
+                [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" maxlength="10">
+                <div *ngIf="submitted && f.nombre.errors">
+                    <span class="text-danger" *ngIf="f.nombre.errors.required">Campo requerido.</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="revisarProveedores()">Proveedores</button>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="crearActualizarPersona()">Crear/Editar</button>
+            </div>
+        </div>
+        <br>
+        <div class="row" [hidden]="listaPersonas.length === 0">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Numero Identificacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--date:"MM/dd/yy"
+                        | uppercase-->
+                        <tr *ngFor="let persona of listaPersonas;let i=index;">
+                            <th scope="row">{{persona.id}}</th>
+                            <td>{{persona.nombre | uppercase }}</td>
+                            <td>{{persona.numIdentificacion}}</td>
+                            <td>
+                                <i class="fas fa-pencil-alt 2x ml-1"  (click)="editarPersona(i+1)" title="Editar"></i>
+                                <i class="far fa-times-circle 2x ml-1" (click)="delete(comic.id)" title="Eliminar"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-danger" *ngIf=flag>{{msgError}} </div>
+                <div class="alert alert-success" *ngIf=flagC>{{msgError}} </div>
+            </div>
+        </div>
+    </form>
+</div>

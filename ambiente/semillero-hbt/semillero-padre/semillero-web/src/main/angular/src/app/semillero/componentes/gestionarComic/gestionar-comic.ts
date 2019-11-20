@@ -85,7 +85,7 @@ export class GestionarComicComponent implements OnInit {
      * @author Diego Fernando Alvarez Silva <dalvarez@heinsohn.com.co>
      */
     ngOnInit(): void {
-        console.log("Ingreso al al evento oninit");
+        
         this.comic = new ComicDTO();
         this.listaComics = new Array<ComicDTO>();
         this.editar= false;
