@@ -13,7 +13,7 @@ public interface IGestionarProveedor {	/**
 	 * Metodo encargado de crear un proveedor nuevo y persistirlo
 	 * @param proveedorusuarioNuevo
 	 */
-	public boolean crearProveedor (ProveedorDTO proveedorNuevo);
+	public boolean crearProveedor (ProveedorDTO proveedorNuevo, Long idPersona);
 	/**
 	 * Metodo encargado de modificar el nombre del usuario
 	 * @param id

@@ -36,9 +36,8 @@ public class GestionarProveedorBean implements IGestionarProveedor {
 	 * operacion, si por el contrario no cumple la condicion no permitira la creacion
 	 * del proveedor
 	 */
-	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public boolean crearProveedor(ProveedorDTO proveedorNuevo) {
+	public boolean crearProveedor(ProveedorDTO proveedorNuevo, Long idPersona) {
 		Proveedor proveedor = new Proveedor();
 		LocalDate ahora = LocalDate.now();
 		boolean flag = false;
@@ -55,7 +54,7 @@ public class GestionarProveedorBean implements IGestionarProveedor {
 			}
 			proveedor.setFecha_creacion(proveedorNuevo.getFecha_creacion());
 			proveedor.setEstado(EstadoEnum.ACTIVO);
-			proveedor.setPersona(em.find(Persona.class, proveedorNuevo.getPersona().getId()));
+			proveedor.setPersona(em.find(Persona.class, idPersona));
 			proveedor.setMonto(20000000L); // se crea con un monto fijo
 			flag = true;
 			em.persist(proveedor);

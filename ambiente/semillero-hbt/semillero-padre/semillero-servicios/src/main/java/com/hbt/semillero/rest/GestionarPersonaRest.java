@@ -73,9 +73,21 @@ public class GestionarPersonaRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResultadoDTO crearPersona(PersonaDTO personaDTO) {
-//		PersonaDTO personaDTO = new PersonaDTO();
-//		personaDTO.setNombre("fransisco");
-//		personaDTO.setNumIdentificacion(2436589L);
+//		PersonaDTO persona1 = new PersonaDTO();
+//		persona1.setNombre("fransisco");
+//		persona1.setNumIdentificacion(2436589L);
+//		PersonaDTO persona2 = new PersonaDTO();
+//		persona2.setNombre("David");
+//		persona2.setNumIdentificacion(2312632L);
+//		PersonaDTO persona3 = new PersonaDTO();
+//		persona3.setNombre("lucy");
+//		persona3.setNumIdentificacion(115044L);
+//		PersonaDTO persona4 = new PersonaDTO();
+//		persona4.setNombre("gabriela");
+//		persona4.setNumIdentificacion(29711L);
+//		gestionarPersonaEJB.crearPersona(persona1);
+//		gestionarPersonaEJB.crearPersona(persona2);
+//		gestionarPersonaEJB.crearPersona(persona3);
 		gestionarPersonaEJB.crearPersona(personaDTO);
 		ResultadoDTO resultadoDTO = new ResultadoDTO(Boolean.TRUE, "Persona creada exitosamente");
 		return resultadoDTO;

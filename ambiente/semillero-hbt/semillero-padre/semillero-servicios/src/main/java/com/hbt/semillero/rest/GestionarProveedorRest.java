@@ -1,5 +1,6 @@
 package com.hbt.semillero.rest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import com.hbt.semillero.dto.ProveedorDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
 import com.hbt.semillero.ejb.IGestionarProveedor;
+import com.hbt.semillero.entidad.Proveedor;
 
 /**
  * Clase para determinar los servicios rest de gestionar un proveedor
@@ -72,8 +74,12 @@ public class GestionarProveedorRest {
 	@Path("/crear")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResultadoDTO crearProveedor(ProveedorDTO proveedornuevo) {
-		gestionarProveedorEJB.crearProveedor(proveedornuevo);
+	public ResultadoDTO crearProveedor(ProveedorDTO proveedornuevo, Long idPersona) {
+		ProveedorDTO p1 = new 	ProveedorDTO();
+		p1.setDireccionProveedor("Cra 23 # 12-30 Fuente");
+		LocalDate localDateOf = LocalDate.of(2017, 10, 10); 
+		p1.setFecha_creacion(localDateOf);
+		gestionarProveedorEJB.crearProveedor(p1,1L);
 		ResultadoDTO resultadoDTO = new ResultadoDTO(Boolean.TRUE, "Proveedor creado exitosamente");
 		return resultadoDTO;
 	}
