@@ -131,5 +131,18 @@ public class GestionarPersonaBean implements IGestionarPersona {
 		return personas.size()==0;
 	}
 
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void modificarPersona(PersonaDTO personaNueva) {
+		Persona personaModificar;
+		if (personaNueva != null) {
+			personaModificar = em.find(Persona.class, personaNueva.getIdPersona());
+			personaModificar.setNombre(personaNueva.getNombre());
+			personaModificar.setNumIdentificacion(personaNueva.getNumIdentificacion());
+			em.merge(personaModificar);
+		}
+		
+	}
+
 	
 }

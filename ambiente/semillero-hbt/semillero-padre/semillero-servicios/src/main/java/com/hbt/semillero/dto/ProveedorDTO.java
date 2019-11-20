@@ -2,12 +2,6 @@ package com.hbt.semillero.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 import com.hbt.semillero.entidad.EstadoEnum;
 import com.hbt.semillero.entidad.Persona;

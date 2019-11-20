@@ -104,11 +104,11 @@ public class GestionarPersonaRest {
 	@Path("/modificar")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResultadoDTO modificarPersona(Long idPersona, String nombre) {
+	public ResultadoDTO modificarPersona(PersonaDTO personaDTO) {
 		ResultadoDTO resultadoMsg;	
 		try {		
-			if (idPersona != null) {
-				gestionarPersonaEJB.modificarPersona(idPersona, nombre);
+			if (personaDTO != null) {
+				gestionarPersonaEJB.modificarPersona(personaDTO);
 				resultadoMsg = new ResultadoDTO(true, "Modificacion exitosa");
 			}else {
 				resultadoMsg = new ResultadoDTO(false, "No existe el objeto a modificar");				

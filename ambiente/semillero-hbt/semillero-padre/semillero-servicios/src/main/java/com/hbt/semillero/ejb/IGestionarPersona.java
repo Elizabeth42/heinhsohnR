@@ -23,6 +23,11 @@ public interface IGestionarPersona {
 	 */
 	public boolean modificarPersona(Long id, String nombre);
 	/**
+	 * permite modificar la persona de otra forma
+	 * @param personaDTO
+	 */
+	public void modificarPersona(PersonaDTO personaDTO);
+	/**
 //	 * Metodo encargado de eliminar persona
 //	 * @param id
 //	 */
